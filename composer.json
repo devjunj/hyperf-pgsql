@@ -1,5 +1,5 @@
 {
-    "name": "hyperf/pgsql",
+    "name": "jhyperf/pgsql",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -10,7 +10,8 @@
     ],
     "keywords": [
         "php",
-        "hyperf"
+        "hyperf",
+        "pgsql"
     ],
     "description": "hyperf pgsql database compoent",
     "autoload": {

@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types=1);
+
+namespace Hyperf\Pgsql;
 /**
  * This file is part of Hyperf.
  *
@@ -9,7 +11,7 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace Hyperf\Pgsql;
+
 
 use Hyperf\Pgsql\Pgsql;
 

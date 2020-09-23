@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 
 namespace Hyperf\Pgsql\Pool;
 
-use http\Exception\InvalidArgumentException;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\ConnectionInterface;
 use Hyperf\Pgsql\PgsqlConnection;
