@@ -62,10 +62,24 @@ class PgsqlTest extends AbstractTestCase
         $this->assertSame(1, $result);
     }
 
+    public function testInitSync()
+    {
+        $result = $this->getPgsql()->query("select init_sync($1,$2)",['wukong_app.products','php_test']);
+        var_dump($result);
+    }
+
+    public function testSyncOne()
+    {
+        $result = $this->getPgsql()->query("select sync_task()",[]);
+        var_dump($result);
+    }
+
+
     private function getPgsql():Pgsql
     {
         $container = $this->getContainer();
         $container->get(PoolFactory::class);
         return $container->get(Pgsql::class);
     }
+
 }

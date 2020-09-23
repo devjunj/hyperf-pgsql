@@ -47,7 +47,8 @@ abstract class AbstractTestCase extends TestCase
                     'port' => '',
                     'username' => '',
                     'password' => '',
-                    'database' => 'hyperf',
+                    'database' => '',
+                    'timezone' => '',
                     'pool' => [
                         'max_connections' => 20,
                     ],

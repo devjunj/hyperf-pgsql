@@ -23,20 +23,19 @@ class PgsqlConnection extends AbstractConnection
      * @var array
      */
     protected $config = [
-        'host' => 'localhost',
-        'port' => 3306,
-        'database' => 'hyperf',
-        'username' => 'root',
+        'username' => '',
         'password' => '',
-        'charset' => 'utf8mb4',
-        'collation' => 'utf8mb4_unicode_ci',
+        'host' => '',
+        'port' => '',
+        'database' => '',
+        'timezone' => '',
         'pool' => [
             'min_connections' => 1,
-            'max_connections' => 10,
+            'max_connections' => 100,
             'connect_timeout' => 10.0,
             'wait_timeout' => 3.0,
             'heartbeat' => -1,
-            'max_idle_time' => 60.0,
+            'max_idle_time' => 60,
         ],
     ];
 
@@ -58,14 +57,16 @@ class PgsqlConnection extends AbstractConnection
     public function reconnect(): bool
     {
         $connection = new PostgreSQL();
-        $connection->connect(
-            "host=" . $this->config['host'] .
+        $connStr =   "host=" . $this->config['host'] .
             " port=" . $this->config['port'] .
             " user=" . $this->config['username'] .
             " password=" . $this->config["password"] .
             " dbname=" . $this->config['database'].
-            " connect_timeout=" . $this->config['pool']['connect_timeout']
-        );
+            " connect_timeout=" . $this->config['pool']['connect_timeout'];
+        if(!empty($this->config['timezone'])){
+            $connStr = $connStr . " options='-c timezone=".$this->config['timezone']."'";
+        }
+        $connection->connect($connStr);
         $this->connection = $connection;
         $this->lastUseTime = microtime(true);
         $this->transactions = 0;

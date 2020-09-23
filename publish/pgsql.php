@@ -6,6 +6,7 @@ return [
         'host' => env('PGSQL_HOST', '127.0.0.1'),
         'port' => env('PGSQL_PORT', 5432),
         'database' => env('PGSQL_DB', 'postgres'),
+        'timezone' => env('PGSQL_TIMEZONE',''),
         'pool' => [
             'min_connections' => 1,
             'max_connections' => 100,
