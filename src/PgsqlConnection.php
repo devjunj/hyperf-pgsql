@@ -119,13 +119,16 @@ class PgsqlConnection extends AbstractConnection
 
     public function query(string $query, array $bindings = []):? array
     {
-        $this->connection->prepare('pg_query',$query);
 
-        $result = $this->connection->execute("pg_query",$bindings);
+        $md5  = md5($query)."_".microtime(false)."_".sizeof($bindings);
+
+        $this->connection->prepare($md5,$query);
+
+        $result = $this->connection->execute($md5,$bindings);
         if ($result === false) {
             throw new RuntimeException($this->connection->error);
         }
-        return $this->connection->fetchAll($result);
+        return  $this->connection->fetchAll($result);
     }
 
     public function fetch(string $query, array $bindings = [])

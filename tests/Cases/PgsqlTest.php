@@ -55,25 +55,22 @@ class PgsqlTest extends AbstractTestCase
         $this->assertIsArray($result);
     }
 
+    public function testMutiple()
+    {
+        $pgsql = $this->getPgsql();
+        $res1 = $pgsql->query("select * from company where id = $1;",[1]);
+        var_dump($res1);
+        $res2 = $pgsql->query("select * from company where id = $1 and name=$2;",[1,'xjj2']);
+        var_dump($res2);
+        $this->assertNotEmpty($res2);
+    }
+
     public function testExecute()
     {
         $result = $this->getPgsql()->execute("update company set name = $1 where id = $2",['xjj2',1]);
         var_dump($result);
         $this->assertSame(1, $result);
     }
-
-    public function testInitSync()
-    {
-        $result = $this->getPgsql()->query("select init_sync($1,$2)",['wukong_app.products','php_test']);
-        var_dump($result);
-    }
-
-    public function testSyncOne()
-    {
-        $result = $this->getPgsql()->query("select sync_task()",[]);
-        var_dump($result);
-    }
-
 
     private function getPgsql():Pgsql
     {

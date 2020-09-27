@@ -47,10 +47,12 @@ abstract class AbstractTestCase extends TestCase
                     'port' => '',
                     'username' => '',
                     'password' => '',
-                    'database' => '',
-                    'timezone' => '',
+                    'database' => 'hyperf',
+                    'timezone' => '+8',
                     'pool' => [
                         'max_connections' => 20,
+                        'connect_timeout' => 10.0,
+                        'max_idle_time' => 60
                     ],
                     'options' => $options,
                 ]

@@ -65,6 +65,7 @@ class Pgsql
         if (!$connection instanceof PgsqlConnection) {
             $pool = $this->factory->getPool($this->poolName);
             $connection = $pool->get()->getConnection();
+            Context::set($this->getContextKey(),$connection);
         }
         return $connection;
     }

@@ -15,7 +15,7 @@ class PoolFactory
     protected $container;
 
     /**
-     * @var Pool[]
+     * @var PgsqlPool[]
      */
     protected $pools = [];
 
