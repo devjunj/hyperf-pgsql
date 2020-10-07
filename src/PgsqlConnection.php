@@ -128,7 +128,8 @@ class PgsqlConnection extends AbstractConnection
         if ($result === false) {
             throw new RuntimeException($this->connection->error);
         }
-        return  $this->connection->fetchAll($result);
+        $result = $this->connection->fetchAll($result);
+        return is_array($result)? $result:[];
     }
 
     public function fetch(string $query, array $bindings = [])
